@@ -15,7 +15,7 @@ async def run(self):
                info = {"creator": 0, "price": item.get("CollectiblesItemDetails", {}).get("CollectibleLowestResalePrice", 9999999), "productid_data": item.get("CollectibleProductId"), "collectible_item_id": item.get("CollectibleItemId"), "item_id": str(item.get("AssetId"))} 
                
                if not item.get("IsForSale"):
-                    del self.items[item_id]
+                    del self.items["list"][info['item_id']]
                     continue
                
                if info['price'] > self.items['global_max_price'] or info['price'] > self.items["list"][item_id]["max_price"]:
