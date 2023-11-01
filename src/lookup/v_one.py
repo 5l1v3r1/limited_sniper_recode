@@ -7,7 +7,7 @@ async def get(self, items, session):
     ssl=False) as response:
         if response.status == 403:
             if (await response.json())['message'] == "Token Validation Failed":
-                self.account['xcsrf_token'] = await xcrf_token()
+                self.account['xcsrf_token'] = await xcrf_token.get()
                 raise Exception("Generated new xcrf_token")
         
         if response.status == 429:
