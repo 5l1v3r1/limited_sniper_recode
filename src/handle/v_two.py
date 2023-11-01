@@ -9,7 +9,7 @@ async def run(self):
     
     while True:
         try:
-           for item_id in self.items["list"]:
+           for item_id in self.items["list"].copy():
                item = await v_two.get(self, item_id, session)
                self.total_searchers += 1
                info = {"creator": 0, "price": item.get("CollectiblesItemDetails", {}).get("CollectibleLowestResalePrice", 9999999), "productid_data": item.get("CollectibleProductId"), "collectible_item_id": item.get("CollectibleItemId"), "item_id": str(item.get("AssetId"))} 
