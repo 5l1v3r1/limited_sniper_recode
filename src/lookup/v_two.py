@@ -9,7 +9,7 @@ async def get(self, item, session):
         self.average_speed.append(time.time() - start_time)
         if response.status == 403:
             if (await response.json())['message'] == "Token Validation Failed":
-                self.account['xcsrf_token'] = await xcrf_token.get()
+                self.account['xcsrf_token'] = await xcrf_token.get(self)
                 raise Exception("Generated new xcrf_token")
             
         if response.status == 429:
